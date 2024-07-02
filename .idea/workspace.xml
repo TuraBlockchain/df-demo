@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="cors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tags/views/tagfusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tagfusion/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagfusion/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,7 @@
       <workItem from="1719833160747" duration="614000" />
       <workItem from="1719834663679" duration="6003000" />
       <workItem from="1719894859392" duration="1193000" />
-      <workItem from="1719902681988" duration="14209000" />
+      <workItem from="1719902681988" duration="14594000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1719739562901</created>
@@ -167,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719919859856</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="cors">
+      <created>1719920320777</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719920320777</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
