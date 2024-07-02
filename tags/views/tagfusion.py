@@ -169,16 +169,6 @@ def get_info(request):
 @csrf_exempt
 def get_cards(request):
 
-    # kv = CardKV(key='test', data={'test': ["1","2","3"]})
-    # kv.save()
-    # kv = CardKV(key='test1', data={'test1': ["4","5","6"]})
-    # kv.save()
-    # kv = CardKV(key='test2', data={'test1': ["7","8","9"]})
-    # kv.save()
-    # 获取所有缓存的键
-
-
-
     keys_list = cache.get(CACHE_KEYS_LIST, [])
     tags_list = []
 
@@ -193,7 +183,7 @@ def get_cards(request):
         "code":0,
         "data":tags_list
     }
-
+    print("")
     return JsonResponse(result_json)
 
 
