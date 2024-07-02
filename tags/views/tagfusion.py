@@ -116,12 +116,10 @@ def get_info(request):
             for row in verify_transaction:
 
                 memo = row[1]
-                print("ver22222222222")
-                print(memo)
+
                 try:
                     memo = memo.replace('“', '"').replace('”', '"').replace('：', ':')
                     memo_json = json.loads(memo)  # 尝试将 memo 解析为 JSON
-                    print(memo_json)
                     tag_version = memo_json.get('tag_version')
                     type_ = memo_json.get('type')
                     tag_name = memo_json.get('tag_name')
@@ -183,7 +181,7 @@ def get_cards(request):
         "code":0,
         "data":tags_list
     }
-    print("get_cards")
+
     return JsonResponse(result_json)
 
 
