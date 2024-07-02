@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from config.config import DATABASE_NAME,DATABASE_USER,DATABASE_PASS,DATABASE_HOST,DATABASE_PORT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,10 +31,7 @@ ALLOWED_HOSTS = ['*']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-DATABASE_USER= "zy"
-DATABASE_PASS = '987654321'
-DATABASE_HOST = '43.135.26.222'
-DATABASE_PORT = '5432'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -86,7 +84,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tagfusion',  # 可以设置为你常用的一个数据库
+        'NAME': DATABASE_NAME,  # 可以设置为你常用的一个数据库
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASS,
         'HOST': DATABASE_HOST,
@@ -101,7 +99,12 @@ DATABASES = {
         'PORT': DATABASE_PORT,
     }
 }
-
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

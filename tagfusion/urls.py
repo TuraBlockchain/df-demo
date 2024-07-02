@@ -22,4 +22,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('tagfusion/api/create_info', tagfusion.create_info),
     path('tagfusion/api/login/get_info', tagfusion.get_info),
+    path('tagfusion/api/get_cards', tagfusion.get_cards),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

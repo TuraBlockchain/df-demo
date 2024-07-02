@@ -7,11 +7,11 @@ from django.views.decorators.http import require_POST
 from django.db import connections
 import json
 from collections import Counter
-from tags.models import CardInfo
-
+from tags.models import CardInfo,CardKV
+from django.core.cache import cache
 
 TAG_VERSION = 'tag1.0'
-
+CACHE_KEYS_LIST = 'all_cache_keys'
 
 @csrf_exempt
 @require_POST
@@ -74,6 +74,7 @@ def get_info(request):
                     "code":1,
                     "message":"Card not created"
                 }
+
                 return JsonResponse(result_content)
 
         with connections['dbjuno'].cursor() as cursor:
@@ -85,17 +86,19 @@ def get_info(request):
                  and from_address = to_address
             """, [address])
             tag_transactions = cursor.fetchall()
-            for row in tag_transactions:
 
+            for row in tag_transactions:
                 memo = row[1]
                 try:
-
                     memo_json = json.loads(memo)  # 尝试将 memo 解析为 JSON
                     tag_version = memo_json.get('tag_version')
                     type_ = memo_json.get('type')
+                    category_name = memo_json.get('category_name')
                     tag_name = memo_json.get('tag_name')
-
                     if tag_version != TAG_VERSION or type_ != 'addTag':
+                        continue
+                    category_data = cache.get(category_name)
+                    if(category_data is None or tag_name not in category_data.get(category_name)):
                         continue
                     my_tags.append(tag_name)
                 except Exception:
@@ -113,28 +116,26 @@ def get_info(request):
             for row in verify_transaction:
 
                 memo = row[1]
+                print("ver22222222222")
+                print(memo)
                 try:
+                    memo = memo.replace('“', '"').replace('”', '"').replace('：', ':')
                     memo_json = json.loads(memo)  # 尝试将 memo 解析为 JSON
+                    print(memo_json)
                     tag_version = memo_json.get('tag_version')
                     type_ = memo_json.get('type')
                     tag_name = memo_json.get('tag_name')
 
-
-                    print(tag_version)
-                    print(type_)
-
                     if tag_version != TAG_VERSION or type_ != 'verifyTag':
                         continue
-                    print("**********")
-                    print(my_tags)
-                    print(tag_name)
+
                     if tag_name in my_tags:
                         verify_tags.append(tag_name)
                 except Exception as e :
                     print(e)
                     continue
             counter = Counter(verify_tags)
-            print(counter)
+
             for tag_name, verify_num in counter.items():
                 status = verify_num >= 1
                 json_list_tags.append({
@@ -162,3 +163,46 @@ def get_info(request):
                     }
                 }
             return JsonResponse(result_content)
+
+
+
+@csrf_exempt
+def get_cards(request):
+
+    # kv = CardKV(key='test', data={'test': ["1","2","3"]})
+    # kv.save()
+    # kv = CardKV(key='test1', data={'test1': ["4","5","6"]})
+    # kv.save()
+    # kv = CardKV(key='test2', data={'test1': ["7","8","9"]})
+    # kv.save()
+    # 获取所有缓存的键
+
+
+
+    keys_list = cache.get(CACHE_KEYS_LIST, [])
+    tags_list = []
+
+
+    for key in keys_list:
+        value = cache.get(key)
+
+        if value is not None:
+            tags_list.append({"category_name":key,"tags" :value.get(key)} )
+
+    result_json = {
+        "code":0,
+        "data":tags_list
+    }
+
+    return JsonResponse(result_json)
+
+
+
+
+
+
+
+
+
+
+

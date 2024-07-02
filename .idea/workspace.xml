@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="init" />
+    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="init">
+      <change afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tags/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tagfusion/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagfusion/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tagfusion/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagfusion/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags/views/tagfusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +59,10 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.26206896" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunManager">
     <configuration name="tagfusion" type="Python.DjangoServer" factoryName="Django server">
@@ -91,6 +105,11 @@
       <workItem from="1719726788487" duration="3486000" />
       <workItem from="1719739715384" duration="1386000" />
       <workItem from="1719741140476" duration="1336000" />
+      <workItem from="1719823084435" duration="846000" />
+      <workItem from="1719833160747" duration="614000" />
+      <workItem from="1719834663679" duration="6003000" />
+      <workItem from="1719894859392" duration="1193000" />
+      <workItem from="1719902681988" duration="8515000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1719739562901</created>
