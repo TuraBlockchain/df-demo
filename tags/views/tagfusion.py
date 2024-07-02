@@ -183,7 +183,7 @@ def get_cards(request):
         "code":0,
         "data":tags_list
     }
-    print("")
+    print("get_cards")
     return JsonResponse(result_json)
 
 
