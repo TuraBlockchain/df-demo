@@ -22,8 +22,7 @@ def create_info(request):
         address = request.POST.get('address')
         link = request.POST.get('link')
         profile_image = request.FILES.get('profile_image')
-
-        if username and address and  profile_image : # 简单验证必填字段
+        if username and address and len(CardInfo.objects.filter(address = address)) == 0 : # 简单验证必填字段
             card_info = CardInfo(
                 username=username,
                 bio=bio,
