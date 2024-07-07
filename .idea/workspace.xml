@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="cors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tags/views/tagfusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
