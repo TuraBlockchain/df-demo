@@ -37,7 +37,7 @@ def get_award(request):
                     where address = %s
                     group by address
             	) a 
-            	left join tags_cardinfo b 
+            	full join (select address,profile_image from tags_cardinfo where address = %s) b 
                 on a.address = b.address;
             """, [address])
             tagfusion_award = cursor.fetchone()
@@ -91,9 +91,6 @@ def get_award(request):
                         "total_award": row[1],
                         "raking": row[2]
                     })
-
-
-
             result_content = 		{
                 "code":code,
                 "register_award":register_award,

@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="update api">
-      <change afterPath="$PROJECT_DIR$/tags/views/tagfusion_award.py" afterDir="false" />
+    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="add award api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tagfusion/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagfusion/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tagfusion/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tagfusion/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tags/views/tagfusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags/views/tagfusion_award.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion_award.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +130,8 @@
       <workItem from="1721624293876" duration="3813000" />
       <workItem from="1721637684425" duration="11126000" />
       <workItem from="1721718008030" duration="675000" />
-      <workItem from="1721719209973" duration="4648000" />
+      <workItem from="1721719209973" duration="6578000" />
+      <workItem from="1721747985770" duration="1383000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1719739562901</created>
@@ -226,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720355876115</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add award api">
+      <created>1721735093336</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721735093336</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +253,7 @@
     <MESSAGE value="add tags manage" />
     <MESSAGE value="cors" />
     <MESSAGE value="update api" />
-    <option name="LAST_COMMIT_MESSAGE" value="update api" />
+    <MESSAGE value="add award api" />
+    <option name="LAST_COMMIT_MESSAGE" value="add award api" />
   </component>
 </project>
