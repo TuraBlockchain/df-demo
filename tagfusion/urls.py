@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from tagfusion import settings
-from tags.views import tagfusion
+from tags.views import tagfusion,tagfusion_award
 from django.conf.urls.static import static
 urlpatterns = [
     path('tagfusion/api/create_info/', tagfusion.create_info),
     path('tagfusion/api/login/get_info/', tagfusion.get_info),
     path('tagfusion/api/get_cards/', tagfusion.get_cards),
+    path('tagfusion/api/get_award/', tagfusion_award.get_award),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

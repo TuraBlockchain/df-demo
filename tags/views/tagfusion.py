@@ -47,19 +47,12 @@ def create_info(request):
 def get_info(request):
     if request.method == 'GET':
         address = request.GET.get('address')
-        # if not address:
-        #     result_content = {
-        #         "code":0,
-        #         "message":"Card not created"
-        #     }
-        #     return JsonResponse(result_content)
-
         my_tags = []
         verify_tags = []
         json_list_tags = []
 
-
         with connections['default'].cursor() as cursor:
+
             cursor.execute("SELECT username,bio,profile_image,link FROM tags_cardinfo WHERE address = %s", [address])
             user_row = cursor.fetchone()
 
@@ -76,61 +69,44 @@ def get_info(request):
 
                 return JsonResponse(result_content)
 
-        with connections['dbjuno'].cursor() as cursor:
             # select my tags
             cursor.execute("""
-                SELECT from_address,memo
+                SELECT from_address,tag_version,tag_type,category_name,tag_name
                 FROM transaction_data
                 WHERE from_address = %s
                  and from_address = to_address
             """, [address])
             tag_transactions = cursor.fetchall()
-
             for row in tag_transactions:
-                memo = row[1]
-                try:
-                    memo_json = json.loads(memo)  # 尝试将 memo 解析为 JSON
-                    tag_version = memo_json.get('tag_version')
-                    type_ = memo_json.get('type')
-                    category_name = memo_json.get('category_name')
-                    tag_name = memo_json.get('tag_name')
-                    if tag_version != TAG_VERSION or type_ != 'addTag':
-                        continue
-                    category_data = cache.get(category_name)
-                    if(category_data is None or tag_name not in category_data.get(category_name)):
-                        continue
-                    my_tags.append(tag_name)
-                except Exception:
+                tag_version = row[1]
+                type_ = row[2]
+                category_name = row[3]
+                tag_name = row[4]
+                if tag_version != TAG_VERSION or type_ != 'addTag':
                     continue
+                category_data = cache.get(category_name)
+                if(category_data is None or tag_name not in category_data.get(category_name)):
+                    continue
+                my_tags.append(tag_name)
             my_tags = list(set(my_tags))
-
             # verify tags
             cursor.execute("""
-                SELECT to_address,memo
+                SELECT to_address,tag_version,tag_type,tag_name
                 FROM transaction_data
                 WHERE to_address = %s
                  and from_address != to_address
             """, [address])
             verify_transaction = cursor.fetchall()
             for row in verify_transaction:
+                tag_version = row[1]
+                type_ = row[2]
+                tag_name = row[3]
 
-                memo = row[1]
-
-                try:
-                    memo = memo.replace('“', '"').replace('”', '"').replace('：', ':')
-                    memo_json = json.loads(memo)  # 尝试将 memo 解析为 JSON
-                    tag_version = memo_json.get('tag_version')
-                    type_ = memo_json.get('type')
-                    tag_name = memo_json.get('tag_name')
-
-                    if tag_version != TAG_VERSION or type_ != 'verifyTag':
-                        continue
-
-                    if tag_name in my_tags:
-                        verify_tags.append(tag_name)
-                except Exception as e :
-                    print(e)
+                if tag_version != TAG_VERSION or type_ != 'verifyTag':
                     continue
+
+                if tag_name in my_tags:
+                    verify_tags.append(tag_name)
             counter = Counter(verify_tags)
 
             for tag_name, verify_num in counter.items():
@@ -156,7 +132,6 @@ def get_info(request):
                         "profile_image":profile_image,
                         "link":link,
                         "tags":json_list_tags
-
                     }
                 }
             return JsonResponse(result_content)
@@ -165,11 +140,8 @@ def get_info(request):
 
 @csrf_exempt
 def get_cards(request):
-
     keys_list = cache.get(CACHE_KEYS_LIST, [])
     tags_list = []
-
-
     for key in keys_list:
         value = cache.get(key)
 
