@@ -39,7 +39,7 @@ def get_award(request):
             	) a 
             	full join (select address,profile_image from tags_cardinfo where address = %s) b 
                 on a.address = b.address;
-            """, [address])
+            """, [address,address])
             tagfusion_award = cursor.fetchone()
             code = 1
             register_award = 0
