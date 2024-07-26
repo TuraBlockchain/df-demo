@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="add award api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tags/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tags/views/tagfusion_award.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion_award.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +67,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.26206896" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -130,7 +131,10 @@
       <workItem from="1721637684425" duration="11126000" />
       <workItem from="1721718008030" duration="675000" />
       <workItem from="1721719209973" duration="6578000" />
-      <workItem from="1721747985770" duration="1835000" />
+      <workItem from="1721747985770" duration="2466000" />
+      <workItem from="1721814992955" duration="40000" />
+      <workItem from="1721815057265" duration="2064000" />
+      <workItem from="1721968475865" duration="1662000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1719739562901</created>
@@ -237,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1721749399399</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add award api">
+      <created>1721749843998</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721749843998</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

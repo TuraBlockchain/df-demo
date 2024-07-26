@@ -23,6 +23,7 @@ def get_award(request):
             cursor.execute("""
             select a.*
                   ,b.profile_image
+            	  ,b.username
               from 
                 (
                   select address
@@ -37,8 +38,9 @@ def get_award(request):
                     where address = %s
                     group by address
             	) a 
-            	full join (select address,profile_image from tags_cardinfo where address = %s) b 
-                on a.address = b.address;
+            	full join (select address,profile_image,username from tags_cardinfo where address = %s) b 
+                on a.address = b.address
+            	;
             """, [address,address])
             tagfusion_award = cursor.fetchone()
             code = 1
@@ -50,6 +52,7 @@ def get_award(request):
             invite_ct      = 0
             total_award    = 0
             profile_image = ""
+            username = ""
             if tagfusion_award :
                 code = 0
                 register_award = tagfusion_award[1]
@@ -60,6 +63,7 @@ def get_award(request):
                 invite_ct      = tagfusion_award[6]
                 total_award    = tagfusion_award[7]
                 profile_image = tagfusion_award[8]
+                username = tagfusion_award[9]
             #top50
             json_top50 = []
             cursor.execute("""
@@ -101,6 +105,7 @@ def get_award(request):
                 "invite_ct" : invite_ct,
                 "total_award" : total_award,
                 "profile_image" : profile_image,
+                "username" : username,
                 "top50":json_top50
             }
             return JsonResponse(result_content)
