@@ -67,25 +67,7 @@ def get_award(request):
             #top50
             json_top50 = []
             cursor.execute("""
-            select username
-                  ,total_award
-                  ,row_number() over(order by total_award desc)  raking
-              from 
-                (
-                  select b.username
-                        ,a.total_award
-            		from 
-                      (
-                        select address
-                              ,sum(total_award) total_award
-                          from tagfusion_award_today
-                          group by address 
-                          order by total_award desc
-                          limit 50
-                      ) a 
-                    left join tags_cardinfo b 
-                    on a.address = b.address
-                )t;
+            select * from tagfusion_award_history_top50;
             """)
             tagfusion_award_top50 = cursor.fetchall()
             if tagfusion_award_top50 :
