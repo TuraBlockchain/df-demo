@@ -85,14 +85,6 @@ WSGI_APPLICATION = 'tagfusion.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DATABASE_NAME,  # 可以设置为你常用的一个数据库
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASS,
-        'HOST': DATABASE_HOST,
-        'PORT': DATABASE_PORT,
-    },
-    'dbjuno': {
-        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bdjuno',
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASS,

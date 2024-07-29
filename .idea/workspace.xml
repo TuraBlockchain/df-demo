@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="cors">
+    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="repair bug is award">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.py" afterDir="false" />
     </list>
@@ -16,6 +16,9 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -25,6 +28,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -45,17 +56,22 @@
     <property name="go.format.on.save.advertiser.fired" value="true" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tagfusion-frontend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.26206896" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\73525\Desktop\mining\spark-code\tagfusion-back-end\tags\views" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="tagfusion" type="Python.DjangoServer" factoryName="Django server">
@@ -104,6 +120,22 @@
       <workItem from="1719894859392" duration="1193000" />
       <workItem from="1719902681988" duration="15966000" />
       <workItem from="1720007000153" duration="3823000" />
+      <workItem from="1720415883567" duration="2825000" />
+      <workItem from="1720886115967" duration="1051000" />
+      <workItem from="1720938106449" duration="120000" />
+      <workItem from="1720938861944" duration="891000" />
+      <workItem from="1721567733197" duration="334000" />
+      <workItem from="1721568079441" duration="676000" />
+      <workItem from="1721624293876" duration="3813000" />
+      <workItem from="1721637684425" duration="11126000" />
+      <workItem from="1721718008030" duration="675000" />
+      <workItem from="1721719209973" duration="6578000" />
+      <workItem from="1721747985770" duration="2466000" />
+      <workItem from="1721814992955" duration="40000" />
+      <workItem from="1721815057265" duration="2064000" />
+      <workItem from="1721968475865" duration="2511000" />
+      <workItem from="1722069936093" duration="1213000" />
+      <workItem from="1722249588028" duration="2470000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1719739562901</created>
@@ -189,7 +221,49 @@
       <option name="project" value="LOCAL" />
       <updated>1719926841598</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="update api">
+      <created>1720355876115</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1720355876115</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add award api">
+      <created>1721735093336</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721735093336</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add award api">
+      <created>1721749399399</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721749399399</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add award api">
+      <created>1721749843998</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721749843998</updated>
+    </task>
+    <task id="LOCAL-00017" summary="repair bug is award">
+      <created>1721981017645</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1721981017645</updated>
+    </task>
+    <task id="LOCAL-00018" summary="repair bug is award">
+      <created>1722256438889</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1722256438889</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +284,9 @@
     <MESSAGE value="init" />
     <MESSAGE value="add tags manage" />
     <MESSAGE value="cors" />
-    <option name="LAST_COMMIT_MESSAGE" value="cors" />
+    <MESSAGE value="update api" />
+    <MESSAGE value="add award api" />
+    <MESSAGE value="repair bug is award" />
+    <option name="LAST_COMMIT_MESSAGE" value="repair bug is award" />
   </component>
 </project>
