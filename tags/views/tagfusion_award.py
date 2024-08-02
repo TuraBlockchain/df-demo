@@ -21,26 +21,9 @@ def get_award(request):
         with connections['default'].cursor() as cursor:
             # select my tags
             cursor.execute("""
-            select a.*
-                  ,b.profile_image
-            	  ,b.username
-              from 
-                (
-                  select address
-                        ,sum(register_award) register_award
-                        ,sum(register_ct) register_ct
-                        ,sum(verify_award) verify_award
-                        ,sum(verify_ct) verify_ct
-                        ,sum(invite_award) invite_award
-                        ,sum(invite_ct) invite_ct
-                        ,sum(total_award) total_award
-                    from tagfusion_award_today 
-                    where address = %s
-                    group by address
-            	) a 
-            	full join (select address,profile_image,username from tags_cardinfo where address = %s) b 
-                on a.address = b.address
-            	;
+            select *
+              from tagfusion_award_history
+              where address = %s
             """, [address,address])
             tagfusion_award = cursor.fetchone()
             code = 1
@@ -48,22 +31,35 @@ def get_award(request):
             register_ct    = 0
             verify_award   = 0
             verify_ct      = 0
-            invite_award   = 0
-            invite_ct      = 0
+            invite_one_award   = 0
+            invite_one_ct      = 0
+            invite_two_award   = 0
+            invite_two_ct      = 0
+            invite_three_award = 0
+            invite_three_ct = 0
+
+
+
+
+
             total_award    = 0
             profile_image = ""
             username = ""
             if tagfusion_award :
                 code = 0
-                register_award = tagfusion_award[1]
-                register_ct    = tagfusion_award[2]
-                verify_award   = tagfusion_award[3]
-                verify_ct      = tagfusion_award[4]
-                invite_award   = tagfusion_award[5]
-                invite_ct      = tagfusion_award[6]
-                total_award    = tagfusion_award[7]
-                profile_image = tagfusion_award[8]
-                username = tagfusion_award[9]
+                register_award     = tagfusion_award[1]
+                register_ct        = tagfusion_award[2]
+                verify_award       = tagfusion_award[3]
+                verify_ct          = tagfusion_award[4]
+                invite_one_award   = tagfusion_award[5]
+                invite_one_ct      = tagfusion_award[6]
+                invite_two_award   = tagfusion_award[7]
+                invite_two_ct      = tagfusion_award[8]
+                invite_three_award = tagfusion_award[9]
+                invite_three_ct = tagfusion_award[10]
+                total_award    = tagfusion_award[11]
+                profile_image = tagfusion_award[12]
+                username = tagfusion_award[13]
             #top50
             json_top50 = []
             cursor.execute("""
@@ -83,8 +79,12 @@ def get_award(request):
                 "register_ct" : register_ct,
                 "verify_award" : verify_award,
                 "verify_ct" : verify_ct,
-                "invite_award" : invite_award,
-                "invite_ct" : invite_ct,
+                "invite_one_award"   :invite_one_award  ,
+                "invite_one_ct"      :invite_one_ct     ,
+                "invite_two_award"   :invite_two_award  ,
+                "invite_two_ct"      :invite_two_ct     ,
+                "invite_three_award" :invite_three_award,
+                "invite_three_ct" :invite_three_ct,
                 "total_award" : total_award,
                 "profile_image" : profile_image,
                 "username" : username,
