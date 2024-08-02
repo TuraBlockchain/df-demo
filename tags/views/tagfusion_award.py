@@ -24,7 +24,7 @@ def get_award(request):
             select *
               from tagfusion_award_history
               where address = %s
-            """, [address,address])
+            """, [address])
             tagfusion_award = cursor.fetchone()
             code = 1
             register_award = 0
