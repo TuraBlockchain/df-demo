@@ -1,0 +1,15 @@
+nohup: ignoring input
+[2024-11-12 22:26:16 +0800] [2579938] [INFO] Starting gunicorn 21.2.0
+[2024-11-12 22:26:16 +0800] [2579938] [INFO] Listening at: http://0.0.0.0:8000 (2579938)
+[2024-11-12 22:26:16 +0800] [2579938] [INFO] Using worker: sync
+[2024-11-12 22:26:16 +0800] [2579942] [INFO] Booting worker with pid: 2579942
+[2024-11-12 22:26:16 +0800] [2579947] [INFO] Booting worker with pid: 2579947
+[2024-11-12 22:26:16 +0800] [2579957] [INFO] Booting worker with pid: 2579957
+[2024-11-12 23:36:37 +0800] [2579938] [INFO] Handling signal: hup
+[2024-11-12 23:36:37 +0800] [2579938] [INFO] Hang up: Master
+[2024-11-12 23:36:37 +0800] [2579938] [ERROR] Worker (pid:2579957) was sent SIGHUP!
+[2024-11-12 23:36:37 +0800] [2579938] [ERROR] Worker (pid:2579947) was sent SIGHUP!
+[2024-11-12 23:36:37 +0800] [2579938] [ERROR] Worker (pid:2579942) was sent SIGHUP!
+[2024-11-12 23:36:37 +0800] [2658044] [INFO] Booting worker with pid: 2658044
+[2024-11-12 23:36:37 +0800] [2658045] [INFO] Booting worker with pid: 2658045
+[2024-11-12 23:36:37 +0800] [2658047] [INFO] Booting worker with pid: 2658047

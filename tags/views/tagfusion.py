@@ -10,6 +10,7 @@ from collections import Counter
 from tags.models import CardInfo,CardKV
 from django.core.cache import cache
 
+
 TAG_VERSION = 'tag1.0'
 CACHE_KEYS_LIST = 'all_cache_keys'
 

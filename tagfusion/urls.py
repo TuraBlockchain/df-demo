@@ -17,12 +17,20 @@ from django.contrib import admin
 from django.urls import path
 
 from tagfusion import settings
-from tags.views import tagfusion,tagfusion_award
+from tags.views import tagfusion, tagfusion_award, loan ,upchain
 from django.conf.urls.static import static
 urlpatterns = [
     path('tagfusion/api/create_info/', tagfusion.create_info),
     path('tagfusion/api/login/get_info/', tagfusion.get_info),
     path('tagfusion/api/get_cards/', tagfusion.get_cards),
     path('tagfusion/api/get_award/', tagfusion_award.get_award),
+    path('tagfusion/api/account_loan_info/', loan.account_loan_info),
+    path('tagfusion/api/create_loan/', loan.create_loan),
+    path('tagfusion/api/loan_list/', loan.loan_list),
+    path('tagfusion/api/repay/', loan.repay),
+    path('tagfusion/api/loan_list_details/', loan.loan_list_details),
+    path('tagfusion/api/get_nft_data/', upchain.get_nft_data),
+    path('tagfusion/api/create_up_chain_data/', upchain.create_up_chain_data),
+    path('tagfusion/api/get_chain_introduction/', upchain.get_chain_introduction)
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -90,6 +90,14 @@ DATABASES = {
         'PASSWORD': DATABASE_PASS,
         'HOST': DATABASE_HOST,
         'PORT': DATABASE_PORT,
+    },
+    'tagfusion': {
+        'ENGINE': 'django.db.backends.postgresql',  # 适用于 PostgreSQL 数据库
+        'NAME': 'tagfusion',  # tagfusion 数据库名称
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASS,
+        'HOST': DATABASE_HOST,
+        'PORT': DATABASE_PORT,
     }
 }
 CACHES = {
