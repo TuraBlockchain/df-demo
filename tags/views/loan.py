@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.db import connection
+from django.db import connections
 from datetime import datetime, timedelta
 from django.core.paginator import Paginator
 from decimal import Decimal
@@ -102,8 +102,8 @@ def account_loan_info(request):
     credit_score = api_response.get('credit_score')
 
     #获取利率
-    apy = compute_interest_rate(credit_score)
-
+    # apy = compute_interest_rate(credit_score)
+    apy = 0
     #计算借款
     min_loan = 10000
     loan_amount = calculate_loan_amount(credit_score)
@@ -176,12 +176,12 @@ def create_transfer(to_address, currency, loan_amount):
 #借款
 def create_loan(request):
     if request.method == 'POST':
-        to_address = request.POST.get('address') # 借款方地址
-        currency = request.POST.get('currency') # 币种
+        to_address = request.POST.get('address')  # 借款方地址
+        currency = request.POST.get('currency')  # 币种
         interest_rate = request.POST.get('borrow_APY')  # 利率（借款APY）
-        loan_amount = request.POST.get('loan_amount') # 借款金额
-        repayment_days = request.POST.get('repayment_date')  #还款天数
-        from_address = "tura12g2up77ngna09a3cvcwra3yajy3zhuw7mlrqyx" # 贷款方地址
+        loan_amount = request.POST.get('loan_amount')  # 借款金额
+        repayment_days = request.POST.get('repayment_date')  # 还款天数
+        from_address = "tura12g2up77ngna09a3cvcwra3yajy3zhuw7mlrqyx"  # 贷款方地址
 
         # 数据验证
         if not to_address or not interest_rate or not loan_amount or not repayment_days or not currency:
@@ -202,8 +202,6 @@ def create_loan(request):
                 "message": "Invalid data format"
             }
             return JsonResponse(result_content)
-
-
 
         min_loan_amount = 10000  # 设置最小借款金额
         max_loan_amount = 1000000  # 设置最大借款金额
@@ -253,7 +251,7 @@ def create_loan(request):
             return JsonResponse(result_content)
 
         # 进行转账操作
-        transfer_result = create_transfer(to_address,currency,loan_amount)
+        transfer_result = create_transfer(to_address, currency, loan_amount)
 
         loan_amount_utura = convert_to_utura(loan_amount)
 
@@ -269,25 +267,34 @@ def create_loan(request):
                 error_message = line.split(":")[1].strip()
 
         if output_code == 0:
-            with connections['tagfusion'].cursor() as cursor:
-                cursor.execute("""
-                           INSERT INTO public.loan_records (from_address, to_address, loan_amount, interest_rate, loan_start_date, repayment_date, status, currency)
-                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                       """, [
-                    from_address,
-                    to_address,
-                    loan_amount_utura,
-                    interest_rate,
-                    loan_start_date,
-                    repayment_date,
-                    1,
-                    currency
-                ])
+            try:
+                with connections['tagfusion'].cursor() as cursor:
+                    cursor.execute("""
+                               INSERT INTO public.loan_records (from_address, to_address, loan_amount, interest_rate, loan_start_date, repayment_date, status, currency)
+                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                               RETURNING id
+                           """, [
+                        from_address,
+                        to_address,
+                        loan_amount_utura,
+                        interest_rate,
+                        loan_start_date,
+                        repayment_date,
+                        1,  # 初始状态
+                        currency
+                    ])
+                    loan_record_id = cursor.fetchone()[0]  # 获取插入记录的 ID
 
-            result_content = {
-                "code": 0,
-                "message": "Loan created successfully"
-            }
+                result_content = {
+                    "code": 0,
+                    "message": "Loan created successfully",
+                    "loan_id": loan_record_id  # 返回插入的贷款记录 ID
+                }
+            except Exception as e:
+                result_content = {
+                    "code": 1,
+                    "message": f"Failed to insert loan record: {str(e)}"
+                }
         else:
             result_content = {
                 "code": 1,
@@ -350,7 +357,7 @@ def loan_list(request):
 
                 # 更新数据库中的利息金额
                 with connections['tagfusion'].cursor() as cursor:
-                    update_cursor.execute("""
+                    cursor.execute("""
                             UPDATE public.loan_records
                             SET interest_amount = %s
                             WHERE id = %s
@@ -361,7 +368,7 @@ def loan_list(request):
 
                 loans.append({
                     "id": loan_id,
-                    "repayment_date": repayment_timestamp.isoformat() if repayment_timestamp else None,
+                    "repayment_date": repayment_date.isoformat() if repayment_date else None,
                     "borrow_APY": float(interest_rate),
                     "loan_amount": float(loan_amount_tura),
                     "currency": currency,
@@ -459,57 +466,62 @@ def repay(request):
         repay_amount = request.POST.get('repay_amount')
         from_address = "tura12g2up77ngna09a3cvcwra3yajy3zhuw7mlrqyx"  # 固定的贷款方地址
 
+        # 参数检查
         if not loan_id or not address or not repay_amount:
             return JsonResponse({"code": 1, "message": "Loan ID, address, and repay amount are required"})
 
         try:
             repay_amount = Decimal(repay_amount) * 100000000  # 转换为 utags
 
-            # 获取当前时间和限制时间（例如最近1小时）
-            now = datetime.now()
-            time_limit = now - timedelta(hours=1)
+            sql_query = """
+                            SELECT COUNT(*)
+                            FROM public.transaction
+                            WHERE memo LIKE %s
+                              AND success = true
+                        """
+            query_param = [f'%"loan_id":{loan_id}%']
 
-            # 查询交易表，确保存在成功的还款交易记录，并限制时间
             with connections['default'].cursor() as cursor:
-                tx_cursor.execute("""
-                    SELECT COUNT(*)
-                    FROM public.transactions
-                    WHERE from_address = %s AND to_address = %s AND success = true AND timestamp >= %s
-                """, [from_address, address, time_limit])
+                cursor.execute(sql_query, query_param)
 
-                tx_count = tx_cursor.fetchone()[0]
+                result = cursor.fetchone()
+                tx_count = result[0] if result else 0  # 检查查询结果是否为 None
 
             if tx_count == 0:
-                return JsonResponse({"code": 1, "message": "No successful repayment transaction found in the last hour"})
+                return JsonResponse({"code": 1, "message": "No successful repayment transaction found with the loan ID in memo"})
 
-            # 根据贷款记录ID和地址查询与该地址相关的未还款记录
+            # 查询该 loan_id 的贷款记录
             with connections['tagfusion'].cursor() as cursor:
                 cursor.execute("""
-                    SELECT id, status, loan_amount, total_repayment_amount
+                    SELECT id, loan_amount, total_repayment_amount
                     FROM public.loan_records
-                    WHERE id = %s AND to_address = %s AND status IN (1, 2, 4)
-                """, [loan_id, address])
+                    WHERE id = %s
+                """, [loan_id])
 
                 rows = cursor.fetchall()
 
             if not rows:
-                return JsonResponse({"code": 1, "message": "No outstanding loan found for this ID and address"})
+                return JsonResponse({"code": 1, "message": "No loan record found with the provided loan ID"})
 
-            loan_id = rows[0][0]
-            status = rows[0][1]
-            loan_amount = rows[0][2]
-            total_repayment_amount = rows[0][3]
+            # 提取查询结果
+            loan_record = rows[0]
+            loan_id = loan_record[0]
+            loan_amount = loan_record[1]
+            total_repayment_amount = loan_record[2]
 
+            # 计算新的还款总额
             new_repayment_amount = total_repayment_amount + repay_amount
 
+            # 如果还款已满，更新状态为已还清，否则为部分还款
             if new_repayment_amount >= loan_amount:
                 new_repayment_amount = loan_amount
-                new_status = 3
+                new_status = 3  # 已还清
             else:
-                new_status = 4
+                new_status = 4  # 部分还款
 
+            # 更新贷款记录中的还款信息
             with connections['tagfusion'].cursor() as cursor:
-                update_cursor.execute("""
+                cursor.execute("""
                     UPDATE public.loan_records
                     SET repayment_count = repayment_count + 1,
                         total_repayment_amount = %s,

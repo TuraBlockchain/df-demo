@@ -1,15 +1,211 @@
 nohup: ignoring input
-[2024-11-12 22:26:16 +0800] [2579938] [INFO] Starting gunicorn 21.2.0
-[2024-11-12 22:26:16 +0800] [2579938] [INFO] Listening at: http://0.0.0.0:8000 (2579938)
-[2024-11-12 22:26:16 +0800] [2579938] [INFO] Using worker: sync
-[2024-11-12 22:26:16 +0800] [2579942] [INFO] Booting worker with pid: 2579942
-[2024-11-12 22:26:16 +0800] [2579947] [INFO] Booting worker with pid: 2579947
-[2024-11-12 22:26:16 +0800] [2579957] [INFO] Booting worker with pid: 2579957
-[2024-11-12 23:36:37 +0800] [2579938] [INFO] Handling signal: hup
-[2024-11-12 23:36:37 +0800] [2579938] [INFO] Hang up: Master
-[2024-11-12 23:36:37 +0800] [2579938] [ERROR] Worker (pid:2579957) was sent SIGHUP!
-[2024-11-12 23:36:37 +0800] [2579938] [ERROR] Worker (pid:2579947) was sent SIGHUP!
-[2024-11-12 23:36:37 +0800] [2579938] [ERROR] Worker (pid:2579942) was sent SIGHUP!
-[2024-11-12 23:36:37 +0800] [2658044] [INFO] Booting worker with pid: 2658044
-[2024-11-12 23:36:37 +0800] [2658045] [INFO] Booting worker with pid: 2658045
-[2024-11-12 23:36:37 +0800] [2658047] [INFO] Booting worker with pid: 2658047
+[2024-11-17 20:08:56 +0800] [1794879] [INFO] Starting gunicorn 21.2.0
+[2024-11-17 20:08:56 +0800] [1794879] [INFO] Listening at: http://0.0.0.0:8000 (1794879)
+[2024-11-17 20:08:56 +0800] [1794879] [INFO] Using worker: sync
+[2024-11-17 20:08:56 +0800] [1794882] [INFO] Booting worker with pid: 1794882
+[2024-11-17 20:08:56 +0800] [1794884] [INFO] Booting worker with pid: 1794884
+[2024-11-17 20:08:56 +0800] [1794886] [INFO] Booting worker with pid: 1794886
+[2024-11-17 20:08:59 +0800] [1794879] [INFO] Handling signal: hup
+[2024-11-17 20:08:59 +0800] [1794879] [INFO] Hang up: Master
+[2024-11-17 20:08:59 +0800] [1794879] [ERROR] Worker (pid:1794884) was sent SIGHUP!
+[2024-11-17 20:08:59 +0800] [1794879] [ERROR] Worker (pid:1794886) was sent SIGHUP!
+[2024-11-17 20:08:59 +0800] [1794879] [ERROR] Worker (pid:1794882) was sent SIGHUP!
+[2024-11-17 20:08:59 +0800] [1794940] [INFO] Booting worker with pid: 1794940
+[2024-11-17 20:08:59 +0800] [1794941] [INFO] Booting worker with pid: 1794941
+[2024-11-17 20:08:59 +0800] [1794942] [INFO] Booting worker with pid: 1794942
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/create_loan/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/loan.py", line 245, in create_loan
+    repayment_date = loan_start_date + timedelta(days=repayment_days)
+OverflowError: date value out of range
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/create_loan/
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/loan.py", line 245, in create_loan
+    repayment_date = loan_start_date + timedelta(days=repayment_days)
+OverflowError: date value out of range
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/get_nft_data/
+Traceback (most recent call last):
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 32, in get_nft_data
+    wallet_nfts_response.raise_for_status()
+  File "/usr/lib/python3.6/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api-mainnet.magiceden.dev/v2/wallets/tura1fhgshvqy93dfld4uqf282hwxtjscjt4z5wjee0/tokens
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 137, in get_nft_data
+    "uuid": request_uuid,  # 将 UUID 添加到错误响应的 data 中
+UnboundLocalError: local variable 'request_uuid' referenced before assignment
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/get_nft_data/
+Traceback (most recent call last):
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 32, in get_nft_data
+    wallet_nfts_response.raise_for_status()
+  File "/usr/lib/python3.6/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api-mainnet.magiceden.dev/v2/wallets/tura1fhgshvqy93dfld4uqf282hwxtjscjt4z5wjee0/tokens
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 137, in get_nft_data
+    "uuid": request_uuid,  # 将 UUID 添加到错误响应的 data 中
+UnboundLocalError: local variable 'request_uuid' referenced before assignment
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/get_nft_data/
+Traceback (most recent call last):
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 32, in get_nft_data
+    wallet_nfts_response.raise_for_status()
+  File "/usr/lib/python3.6/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api-mainnet.magiceden.dev/v2/wallets/3UUNZ7UDrpYRuikuxscEsGdScSbtZqBnrwNM92k8JF9VZiRtmHwtvQpiCBfoxqoLF9vBUNYFcFPUyQKh2pRUX228/tokens
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 137, in get_nft_data
+    "uuid": request_uuid,  # 将 UUID 添加到错误响应的 data 中
+UnboundLocalError: local variable 'request_uuid' referenced before assignment
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/get_nft_data/
+Traceback (most recent call last):
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 32, in get_nft_data
+    wallet_nfts_response.raise_for_status()
+  File "/usr/lib/python3.6/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api-mainnet.magiceden.dev/v2/wallets/3UUNZ7UDrpYRuikuxscEsGdScSbtZqBnrwNM92k8JF9VZiRtmHwtvQpiCBfoxqoLF9vBUNYFcFPUyQKh2pRUX228/tokens
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 137, in get_nft_data
+    "uuid": request_uuid,  # 将 UUID 添加到错误响应的 data 中
+UnboundLocalError: local variable 'request_uuid' referenced before assignment
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Dao Member'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:Crypto Holer'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+/usr/local/lib64/python3.6/site-packages/django/core/cache/backends/base.py:250: CacheKeyWarning: Cache key contains characters that will cause errors if used with memcached: ':1:CEX Trader'
+  warnings.warn(warning, CacheKeyWarning)
+Internal Server Error: /tagfusion/api/get_nft_data/
+Traceback (most recent call last):
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 32, in get_nft_data
+    wallet_nfts_response.raise_for_status()
+  File "/usr/lib/python3.6/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api-mainnet.magiceden.dev/v2/wallets/3UUNZ7UDrpYRuikuxscEsGdScSbtZqBnrwNM92k8JF9VZiRtmHwtvQpiCBfoxqoLF9vBUNYFcFPUyQKh2pRUX228/tokens
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib64/python3.6/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tagfusion-back-end/tags/views/upchain.py", line 137, in get_nft_data
+    "uuid": request_uuid,  # 将 UUID 添加到错误响应的 data 中
+UnboundLocalError: local variable 'request_uuid' referenced before assignment

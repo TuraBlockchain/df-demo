@@ -1,103 +1,131 @@
 from django.http import JsonResponse
 from django.db import connections
 from django.http import HttpResponse
+import sys
 import requests
 import json
 from datetime import datetime
 import uuid
 
 #获取上链数据
-def get_nft_data(request):
-    # 从 GET 参数中获取 wallet_address 和 mint_address
-    wallet_address = request.GET.get('nft_address')
-    mint_address = request.GET.get('mint_address')
+# 定义多个标签，如果以后需要添加更多标签，可以在这个数组中添加
+LABELS = ["Solana"]
 
-    if not wallet_address or not mint_address:
+def get_nft_data(request):
+    # 从 GET 参数中获取 wallet_address
+    wallet_address = request.GET.get('walletAddress')
+
+    if not wallet_address:
         result_content = {
             "code": 1,
-            "message": "钱包地址和NFT地址是必需的"
+            "message": "钱包地址是必需的"
         }
         return JsonResponse(result_content)
 
-    # 构建 Magic Eden API 的请求 URL
+    # Magic Eden API 基础 URL
     base_url = "https://api-mainnet.magiceden.dev/v2"
 
-    # 获取单个NFT基础信息
-    nft_info_url = f"{base_url}/tokens/{mint_address}"
-    # 获取NFT当前挂单
-    nft_listings_url = f"{base_url}/tokens/{mint_address}/listings"
-    # 获取NFT交易历史
-    nft_activities_url = f"{base_url}/tokens/{mint_address}/activities"
-    # 获取钱包活动（即该钱包的交易历史）
-    wallet_activities_url = f"{base_url}/wallets/{wallet_address}/activities"
-
-    # 设置 API 密钥，替换成你获得的实际 API Key
-    api_key = "155bc2f5-be8c-4788-a4e4-6d78a7c17be1"
-
-    headers = {
-        "Authorization": f"Bearer {api_key}"
-    }
-
-    # 生成一个随机的 UUID
-    request_uuid = str(uuid.uuid4())
-
+    # 获取钱包中的所有 NFT 的 mint 地址
+    wallet_nfts_url = f"{base_url}/wallets/{wallet_address}/tokens"
     try:
-        # 发起并处理多个请求
-        nft_info_response = requests.get(nft_info_url, headers=headers)
-        nft_info_response.raise_for_status()
+        wallet_nfts_response = requests.get(wallet_nfts_url)
+        wallet_nfts_response.raise_for_status()
 
-        nft_listings_response = requests.get(nft_listings_url, headers=headers)
-        nft_listings_response.raise_for_status()
+        # 解析 Magic Eden 返回的 JSON 数据
+        wallet_nfts_data = wallet_nfts_response.json()
 
-        nft_activities_response = requests.get(nft_activities_url, headers=headers)
-        nft_activities_response.raise_for_status()
+        # 如果没有找到任何 NFT
+        if not wallet_nfts_data:
+            result_content = {
+                "code": 1,
+                "message": "该钱包没有持有任何 NFT"
+            }
+            return JsonResponse(result_content)
 
-        wallet_activities_response = requests.get(wallet_activities_url, headers=headers)
-        wallet_activities_response.raise_for_status()
+        # 提取 mint 地址列表
+        mint_addresses = [nft["mintAddress"] for nft in wallet_nfts_data]
 
-        # 解析所有响应 JSON 数据
-        nft_info_data = nft_info_response.json()
-        nft_listings_data = nft_listings_response.json()
-        nft_activities_data = nft_activities_response.json()
-        wallet_activities_data = wallet_activities_response.json()
+        # 获取 Magic Eden API 密钥
+        api_key = "155bc2f5-be8c-4788-a4e4-6d78a7c17be1"
+        headers = {
+            "Authorization": f"Bearer {api_key}"
+        }
 
-        wallet_first_activity_time = None
+        # 生成一个随机的 UUID
+        request_uuid = str(uuid.uuid4())
+        MAX_RESPONSE_SIZE = 3000  # 最大字节大小限制
 
-        # 获取钱包的首次活动时间（即该钱包首次购买NFT的时间）
-        if wallet_activities_data:
-            wallet_first_activity = next(
-                (activity for activity in wallet_activities_data if activity.get("tokenMint") == mint_address), None)
-            if wallet_first_activity:
-                wallet_first_activity_time = wallet_first_activity.get("blockTime")
-
-        wallet_holding_days = None
-        if wallet_first_activity_time:
-            wallet_first_activity_datetime = datetime.utcfromtimestamp(wallet_first_activity_time)
-            current_datetime = datetime.utcnow()
-
-            # 计算钱包持有时间
-            wallet_holding_period = current_datetime - wallet_first_activity_datetime
-            # 计算钱包持有天数
-            wallet_holding_days = wallet_holding_period.days
-
-        # 检查 nft_info_data 是否包含 Solana 的标签或信息
-        solana_tag = "Solana"
-
-        # 汇总结果数据，并添加 Solana 标签
+        # 初始化返回数据
         result_json = {
             "code": 0,
             "message": "请求成功",
             "data": {
-                "nft_info": nft_info_data,
-                "nft_listings": nft_listings_data,
-                "nft_activities": nft_activities_data,
-                # "wallet_activities_data":wallet_activities_data,
-                "type": solana_tag,  # 添加 Solana 标签
-                "wallet_holding_period_days": wallet_holding_days,  # 添加钱包持有NFT的天数
-                "uuid": request_uuid  # 将 UUID 添加到 data 中
+                "nfts": [],
+                "uuid": request_uuid,  # 将 UUID 添加到返回的数据中
+                "type": ["Solana"]  # 假设你用 Solana 作为类型
             }
         }
 
+        # 查询每个 mint 地址的销售信息
+        for mint_address in mint_addresses:
+            nft_info_url = f"{base_url}/tokens/{mint_address}"
+            nft_listings_url = f"{base_url}/tokens/{mint_address}/listings"
+            nft_activities_url = f"{base_url}/tokens/{mint_address}/activities"
+
+            # 发起请求获取 NFT 信息
+            nft_info_response = requests.get(nft_info_url, headers=headers)
+            nft_info_response.raise_for_status()
+
+            nft_listings_response = requests.get(nft_listings_url, headers=headers)
+            nft_listings_response.raise_for_status()
+
+            nft_activities_response = requests.get(nft_activities_url, headers=headers)
+            nft_activities_response.raise_for_status()
+
+            # 解析响应数据
+            nft_info_data = nft_info_response.json()
+            nft_listings_data = nft_listings_response.json()  # 获取所有的 listing 数据
+            nft_activities_data = nft_activities_response.json()  # 获取所有的 activity 数据
+
+            # 筛选 name 为 "STEPNNFT" 的 NFT，忽略大小写
+            nft_name = nft_info_data.get('name', '').lower()
+
+            # 计算该钱包持有该 NFT 的天数
+            wallet_holding_days = None
+            if isinstance(nft_activities_data, list):
+                first_activity = next(
+                    (activity for activity in nft_activities_data if activity.get("type") == "LIST"), None)
+                if first_activity:
+                    first_activity_time = first_activity.get("blockTime")
+                    if first_activity_time:
+                        first_activity_datetime = datetime.utcfromtimestamp(first_activity_time)
+                        current_datetime = datetime.utcnow()
+                        wallet_holding_period = current_datetime - first_activity_datetime
+                        wallet_holding_days = wallet_holding_period.days
+
+            # 限制 listings 数据最多为 5 个字典
+            nft_activities_data = nft_activities_data[:3]
+
+            # 将该 NFT 的信息添加到结果中
+            result_json["data"]["nfts"].append({
+                "nft_info": nft_info_data if nft_name == "stepnnft" else {},  # 只有符合条件的 nft_info 被加入
+                "wallet_holding_days": wallet_holding_days,
+                "listings": nft_listings_data,  # 完整的 listing 数据
+                "activities": nft_activities_data,  # 完整的 activity 数据
+            })
+
+        # 检查返回结果的字节大小
+        response_json = json.dumps(result_json)  # 转换为 JSON 字符串
+        response_size = sys.getsizeof(response_json.encode('utf-8'))  # 获取字节大小
+
+        if response_size > MAX_RESPONSE_SIZE:
+            result_content = {
+                "code": 1,
+                "message": "响应数据超过最大字节限制"
+            }
+            return JsonResponse(result_content)
+
+        # 返回最终结果
         return JsonResponse(result_json)
 
     except requests.exceptions.RequestException as e:
@@ -106,10 +134,11 @@ def get_nft_data(request):
             "code": 1,
             "message": f"API 请求失败: {str(e)}",
             "data": {
-                "uuid": request_uuid  # 将 UUID 添加到错误响应的 data 中
+                "uuid": request_uuid,  # 将 UUID 添加到错误响应的 data 中
             }
         }
         return JsonResponse(result_json, status=500)
+
 #上链回执
 def create_up_chain_data(request):
     if request.method == 'POST':
