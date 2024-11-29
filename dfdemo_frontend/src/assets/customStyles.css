@@ -1,0 +1,257 @@
+:root {
+    --toastify-z-index: 1000001;
+    --toastify-toast-top: 100px;
+}
+
+/* 自定义滚动条样式 */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    /* 滚动条的宽度 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    /*background-color: #dc4210; !* 滚动条的颜色 *!*/
+    background: linear-gradient(213deg, rgba(255, 100, 0, 0.8) 0%, rgba(255, 30, 0, 0.7) 100%);
+    /* 滚动条的渐变颜色 */
+
+    /*background-color: #0baf4e; !* 滚动条的颜色 *!*/
+
+    border-radius: 10px;
+    /* 滚动条的圆角 */
+    /*border: 3px solid #000000; !* 滚动条的外边框 *!*/
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    /*background-color: #1a1a1a; !* 滚动条轨道的颜色 *!*/
+    background-color: #ffffff;
+    /* 滚动条轨道的颜色 */
+}
+
+
+
+/* 在 customStyles.css 中添加渐变背景样式 */
+/*.bg-gradient-blue {*/
+/*    background: linear-gradient(to right, #3a7bd5, #a1c4fd);*/
+/*}*/
+.bg-gradient-blue {
+    background: linear-gradient(to right, #ee800d, #afdea5);
+}
+
+/* copy my profile */
+.copy-success-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+
+.particle-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #ffffff;
+    /* 将背景颜色设置为白色 */
+}
+
+body {
+    background-color: #121212;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.bg-line {
+    background: url('/images/bg_line.png') no-repeat right top/3931px 1914px;
+}
+.bg-global {
+    background: url('/images/bg_global.png') no-repeat top 40px center/986px 884px;
+}
+.bg-global-fill {
+    background: url('/images/bg_global.png') no-repeat center/100%;
+}
+
+.flex-start {
+    justify-content: start !important;
+}
+
+.icon-carot {
+    width: 11px;
+    height: 11px;
+    margin-top: 2px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    transform: rotate(-135deg);
+    transform-origin: 42% 30%;
+    transition: all .3s;
+}
+
+.icon-carot-active {
+    border-top-color: #181818;
+    border-left-color: #181818;
+    transform: rotate(45deg);
+    transition: all .3s;
+}
+
+.custom-ipt {
+    position: relative;
+}
+
+.custom-ipt input {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 46px;
+    padding: 24px 11px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: #ffffffd3;
+    background: rgba(255, 255, 255, .1);
+    outline: none;
+}
+
+.custom-ipt input:focus~label,
+.custom-ipt input:valid~label,
+.custom-ipt.filled label {
+    color: #FF6F00FF;
+    transform: translateY(-100%) scale(.625) !important;
+}
+
+.custom-ipt input:focus {
+    border-bottom: 1px solid #FFA000;
+}
+
+.custom-ipt label {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    color: rgba(255, 255, 255, 0.54);
+    transform: translateY(-50%) scale(1);
+    transform-origin: 0 50%;
+    transition: all .3s;
+}
+
+.custom-upload {
+    height: 106px;
+    background: rgba(255, 255, 255, .1);
+    color: rgba(255, 255, 255, 0.54);
+}
+
+.custom-upload>label {
+    position: absolute;
+    left: 11px;
+    top: 16px;
+    color: rgba(255, 255, 255, 0.54);
+    transform: translateY(0%) scale(1);
+    transform-origin: 0 50%;
+    transition: all .3s;
+}
+
+.custom-upload:hover>label {
+    color: #FF6F00FF;
+    transform: translateY(-16px) scale(.625) !important;
+}
+
+.custom-upload:hover .btn-select {
+    display: flex;
+}
+
+.custom-ckb {
+    display: inline-flex;
+    position: relative;
+    width: 14px;
+    height: 14px;
+}
+
+.custom-ckb input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 2px;
+    background: #f3f4f6;
+    outline: none;
+}
+
+.custom-ckb input[type="checkbox"]:checked {
+    background-color: #FF6F00FF;
+    border-color: #FF6F00FF;
+}
+
+.custom-ckb input[type="checkbox"]::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.custom-ckb input[type="checkbox"]:checked::before {
+    content: "\2713";
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.738);
+    text-align: center;
+    line-height: 1;
+}
+.bgpoly {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: url('/images/bg_poly.png') no-repeat bottom left/100% auto;
+    pointer-events: none;
+    z-index: 0;
+}
+.bgpoly::before {
+    content: "";
+    position: fixed;
+    left: -30px;
+    top: 50%;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: url('/images/poly_green.png') no-repeat center/contain;
+    pointer-events: none;
+
+}
+.bgpoly::after {
+    content: "";
+    position: fixed;
+    right: 0;
+    top: 30%;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: url('/images/poly_yellow.png') no-repeat center/contain;
+    pointer-events: none;
+}
+
+.custom-dialog::deep>.fui-DialogSurface::part(control) {
+    --dialog-width: 500px;
+    --dialog-height: 350px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+}
