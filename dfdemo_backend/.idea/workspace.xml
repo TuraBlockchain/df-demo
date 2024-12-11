@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="add time,date in CardInfo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tags/views/tagfusion_award.py" beforeDir="false" afterPath="$PROJECT_DIR$/tags/views/tagfusion_award.py" afterDir="false" />
-    </list>
+    <list default="true" id="27462df1-a86e-4e8e-9238-31b6f590f43e" name="变更" comment="add time,date in CardInfo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -177,6 +174,8 @@
       <workItem from="1722579671909" duration="1692000" />
       <workItem from="1732789345770" duration="23000" />
       <workItem from="1732789445171" duration="5000" />
+      <workItem from="1733940474431" duration="4000" />
+      <workItem from="1733940554771" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1719739562901</created>
