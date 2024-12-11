@@ -26,19 +26,3 @@ def listen_to_tags_cardkv_changes():
             # 更新缓存
             update_cache()
 
-def update_cache():
-    from .models import CardKV
-    kv_data = CardKV.objects.all()
-    keys_list = []
-    for kv in kv_data:
-        cache.set(kv.key, kv.data)
-        keys_list.append(kv.key)
-    cache.set(CACHE_KEYS_LIST, keys_list)  # 更新所有键的列表
-    print("Cache updated with keys:", keys_list)
-
-def start_listening():
-    # 初始缓存加载
-    update_cache()
-    # 启动监听线程
-    listener_thread = threading.Thread(target=listen_to_tags_cardkv_changes, daemon=True)
-    listener_thread.start()
